@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Uri uri;
     private String tag = "18MarchV1";
     private String pathImageString;
+    private boolean aBoolean = true; // true ==> nonChoose Image, false ==> Choosed
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         Log.d(tag, "pathImage ==> " + pathImageString);
 
+        aBoolean = false;
 
     }   // onActivity
 
@@ -98,6 +102,46 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         }   // if
 
+        //For Button
+        if (view == button) {
+
+            //Get Value from EditText
+            String strName = nameEditText.getText().toString().trim();
+            String strUser = userEditText.getText().toString().trim();
+            String strPassword = passwordEditText.getText().toString().trim();
+
+            if (aBoolean) {
+                Toast.makeText(RegisterActivity.this, "Please Choose Image", Toast.LENGTH_SHORT).show();
+            } else if ((strName.equals("")) || (strUser.length() == 0) || (strPassword.equals(""))) {
+                Toast.makeText(RegisterActivity.this, "Please Fill All Blank", Toast.LENGTH_SHORT).show();
+            } else {
+                uploadToServer(strName, strUser, strPassword);
+            }
+
+        }   // if
+
+
     }   // onClick
+
+    private void uploadToServer(String strName, String strUser, String strPassword) {
+
+        //Upload Image to Server
+        try {
+
+            //Change Policy
+            StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy
+                    .Builder().permitAll().build();
+            StrictMode.setThreadPolicy(threadPolicy);
+
+            
+
+
+        } catch (Exception e) {
+            Log.d(tag, "e upload Image ==> " + e.toString());
+        }
+
+
+
+    }   // uploadToServer
 
 }   // Main Class
