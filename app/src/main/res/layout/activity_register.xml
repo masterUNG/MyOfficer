@@ -74,5 +74,13 @@
 
     </LinearLayout>
 
+    <Button
+        android:textColor="#ffffff"
+        android:background="#3cbc5e"
+        android:layout_alignParentBottom="true"
+        android:text="@string/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 </RelativeLayout>
