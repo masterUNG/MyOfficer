@@ -147,9 +147,29 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             simpleFTP.stor(new File(pathImageString));
             simpleFTP.disconnect();
 
+            //For Upload Text
+            MyPostData myPostData = new MyPostData(RegisterActivity.this,
+                    strName,
+                    strUser,
+                    strPassword,
+                    "http://swiftcodingthai.com/4mar/ImageMaster" +
+            pathImageString.substring(pathImageString.lastIndexOf("/")));
+
+            myPostData.execute();
+
+            if (Boolean.parseBoolean(myPostData.get())) {
+                finish();
+            } else {
+                Toast.makeText(RegisterActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+
+
         } catch (Exception e) {
             Log.d(tag, "e upload Image ==> " + e.toString());
         }
+
+
+
 
 
 
