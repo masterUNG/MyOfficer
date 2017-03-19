@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,11 +45,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
+        //For Login
+        if (view == button) {
+
+            //Get Value From Edit text
+            String strUser = userEditText.getText().toString().trim();
+            String strPassword = passwordEditText.getText().toString().trim();
+
+            //Check Space
+            if (strUser.equals("") || strPassword.equals("")) {
+                myAlert("มีช่องว่าง นะคะ");
+            }
+
+
+        }   // if
+
+
         //For Register
         if (view == textView) {
             startActivity(new Intent(MainActivity.this, RegisterActivity.class));
         }
 
     }   // onClick
+
+    private void myAlert(String strMessage) {
+        Toast.makeText(MainActivity.this, strMessage, Toast.LENGTH_SHORT).show();
+    }
 
 }   // Main Class

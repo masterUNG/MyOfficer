@@ -153,7 +153,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     strUser,
                     strPassword,
                     "http://swiftcodingthai.com/4mar/ImageMaster" +
-            pathImageString.substring(pathImageString.lastIndexOf("/")));
+                            pathImageString.substring(pathImageString.lastIndexOf("/")));
 
             myPostData.execute();
 
