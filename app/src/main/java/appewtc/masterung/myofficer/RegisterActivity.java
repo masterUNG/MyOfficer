@@ -137,6 +137,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     .Builder().permitAll().build();
             StrictMode.setThreadPolicy(threadPolicy);
 
+
             //Upload Image my FTP
             SimpleFTP simpleFTP = new SimpleFTP();
             simpleFTP.connect("ftp.swiftcodingthai.com", 21,
