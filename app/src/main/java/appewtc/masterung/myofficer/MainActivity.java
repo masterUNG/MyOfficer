@@ -3,6 +3,7 @@ package appewtc.masterung.myofficer;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,7 +56,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //Check Space
             if (strUser.equals("") || strPassword.equals("")) {
                 myAlert("มีช่องว่าง นะคะ");
-            }
+            } else {
+
+                try {
+
+                    MyGetData myGetData = new MyGetData(MainActivity.this);
+                    myGetData.execute("http://swiftcodingthai.com/4mar/getMaster.php");
+
+                    String strJSON = myGetData.get();
+                    Log.d("19MarchV1", "JSoN ==> " + strJSON);
+
+
+                } catch (Exception e) {
+                    Log.d("19MarchV1", "e ==> " + e.toString());
+                }
+
+
+            }   // if
 
 
         }   // if
